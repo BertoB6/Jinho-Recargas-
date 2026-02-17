@@ -1,0 +1,235 @@
+<!DOCTYPE html><html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jinho Recargas</title><style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial, Helvetica, sans-serif;}
+
+body{
+    background:#ffffff;
+    color:#1a1a1a;
+    overflow-x:hidden;
+}
+
+/* ===== FUNDO ANIMADO GAMER ===== */
+.lines{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    z-index:-1;
+}
+
+.line{
+    position:absolute;
+    width:2px;
+    height:100%;
+    background:rgba(0,0,0,0.03);
+    left:calc(10% * var(--i));
+}
+
+.line::after{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:150px;
+    top:-50%;
+    background:linear-gradient(to bottom, rgba(255,255,255,0) 0%, #0f9d58 75%, #0f9d58 100%);
+    animation:drop 5s linear infinite;
+}
+
+.line:nth-child(1){left:10%;}
+.line:nth-child(2){left:20%;}
+.line:nth-child(3){left:30%;}
+.line:nth-child(4){left:40%;}
+.line:nth-child(5){left:50%;}
+.line:nth-child(6){left:60%;}
+.line:nth-child(7){left:70%;}
+.line:nth-child(8){left:80%;}
+.line:nth-child(9){left:90%;}
+.line:nth-child(10){left:95%;}
+
+.line:nth-child(2)::after{animation-delay:0.5s;}
+.line:nth-child(3)::after{animation-delay:1s;}
+.line:nth-child(4)::after{animation-delay:1.5s;}
+.line:nth-child(5)::after{animation-delay:2s;}
+.line:nth-child(6)::after{animation-delay:2.5s;}
+.line:nth-child(7)::after{animation-delay:3s;}
+.line:nth-child(8)::after{
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #00FA9A 75%, #00FA9A 100%);
+  animation-delay: 3.5s;
+}
+.line:nth-child(9)::after{
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #FF1493 75%, #FF1493 100%);
+  animation-delay: 4s;
+}
+.line:nth-child(10)::after{
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #00BFFF 75%, #00BFFF 100%);
+  animation-delay: 4.5s;
+}
+
+@keyframes drop{
+  0%{top:-50%;}
+  100%{top:110%;}
+}
+
+/* ===== HEADER ===== */
+header{
+    text-align:center;
+    padding:60px 20px;
+    position:relative;
+}
+
+h1{
+    font-size:42px;
+    color:#0a58ca;
+}
+
+.subtitle{
+    margin-top:15px;
+    font-size:18px;
+    max-width:700px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.cta-container{margin-top:30px;}
+
+.btn{
+    display:inline-block;
+    padding:14px 28px;
+    margin:10px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.btn-green{background:#0f9d58;color:#fff;}
+.btn-blue{background:#0a58ca;color:#fff;}
+
+.btn:hover{opacity:0.85;}
+
+.section{
+    padding:60px 20px;
+    max-width:1000px;
+    margin:auto;
+    text-align:center;
+}
+
+.carousel-container{
+    position:relative;
+    max-width:800px;
+    margin:40px auto;
+    overflow:hidden;
+    border-radius:12px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+    background:#fff;
+}
+
+.carousel{
+    display:flex;
+    transition:transform 0.6s ease-in-out;
+}
+
+.slide{min-width:100%;padding:25px;}
+
+.slide img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+    border-radius:8px;
+}
+
+.slide h3{margin-top:15px;color:#0a58ca;}
+.slide p{margin-top:10px;}
+
+.contact{
+    background:#ffffff;
+    padding:50px 20px;
+    text-align:center;
+}
+
+.contact h2{color:#0f9d58;margin-bottom:20px;}
+.contact p{margin:8px 0;font-size:16px;}
+
+footer{
+    text-align:center;
+    padding:20px;
+    background:#0a58ca;
+    color:white;
+    margin-top:40px;
+}
+
+@media(max-width:768px){
+    h1{font-size:32px;}
+}
+</style></head>
+<body><div class="lines">
+  <div class="line"></div>
+  <div class="line"></div>
+  <div class="line"></div>
+  <div class="line"></div>
+  <div class="line"></div>
+  <div class="line"></div>
+  <div class="line"></div>
+  <div class="line"></div>
+  <div class="line"></div>
+  <div class="line"></div>
+</div><header>
+    <h1>Jinho Recargas</h1>
+    <p class="subtitle">
+        Plataforma profissional para compra rápida de Megabytes Vodacom e itens de Free Fire.
+        Recargas seguras, rápidas e confiáveis.
+    </p><div class="cta-container">
+    <a href="#" class="btn btn-green">Ir para Loja de Megas</a>
+    <a href="#" class="btn btn-blue">Ir para Loja Free Fire</a>
+</div>
+
+</header><section class="section">
+    <h2>Atualizações e Novidades</h2>
+    <p>Acompanhe abaixo as últimas novidades da loja.</p><div class="carousel-container">
+    <div class="carousel" id="carousel">
+        <div class="slide">
+            <img src="tab.jpg" alt="Promoção 1">
+            <h3>Promoção Especial</h3>
+            <p>Pacotes promocionais disponíveis por tempo limitado.</p>
+        </div>
+        <div class="slide">
+            <img src="ta.jpg" alt="Atualização 2">
+            <h3>Novos Itens Free Fire</h3>
+            <p>Itens recém adicionados na loja gamer.</p>
+        </div>
+        <div class="slide">
+            <img src="t.jpg" alt="Atualização 3">
+            <h3>Entrega Instantânea</h3>
+            <p>Sistema otimizado para entregas mais rápidas.</p>
+        </div>
+        <div class="slide">
+            <img src="pe.jpg" alt="Atualização 4">
+            <h3>Suporte Melhorado</h3>
+            <p>Atendimento mais ágil via WhatsApp e Email.</p>
+        </div>
+    </div>
+</div>
+
+</section><section class="contact">
+    <h2>Suporte & Contato</h2>
+    <p><strong>WhatsApp:</strong> +258 84 000 0000</p>
+    <p><strong>Email:</strong> suporte@jinhorecargas.com</p>
+</section><footer>
+    © 2026 Jinho Recargas - Todos os direitos reservados.
+</footer><script>
+let index = 0;
+const carousel = document.getElementById('carousel');
+const totalSlides = carousel.children.length;
+
+setInterval(() => {
+    index++;
+    if(index >= totalSlides){ index = 0; }
+    carousel.style.transform = `translateX(-${index * 100}%)`;
+}, 4000);
+</script></body>
+</html>
