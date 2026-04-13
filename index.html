@@ -1,132 +1,275 @@
-<!DOCTYPE html><html lang="pt">
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jinho Recargas</title><style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial, Helvetica, sans-serif;}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JINHO RECARGAS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1 id="titulo">JINHO RECARGAS</h1>
+        <p id="subtitulo">Recarregue seu jogo agora!</p>
+        
+        <div class="rectangle rect-1" onclick="abrirLojaeMegas()">
+            <h2>🏪 LOJA DE MEGAS</h2>
+            <p>Recarregue seus Megas agora</p>
+            <button class="btn btn-megas" onclick="event.stopPropagation(); recarregarMegas()">
+                💎 RECARREGAR MEGAS
+            </button>
+        </div>
 
-body{
-    background:#ffffff;
-    color:#1a1a1a;
-    overflow-x:hidden;
-}
+        <div class="rectangle rect-2" onclick="abrirLojaDiamantes()">
+            <h2>🏪 LOJA DE DIAMANTES</h2>
+            <p>Recarregue seus Diamantes agora</p>
+            <button class="btn btn-diamantes" onclick="event.stopPropagation(); recarregarDiamantes()">
+                ⭐ RECARREGAR DIAMANTES
+            </button>
+        </div>
 
-/* FUNDO ANIMADO */
-.lines{position:fixed;top:0;left:0;width:100%;height:100%;overflow:hidden;z-index:-1;}
-.line{position:absolute;width:2px;height:100%;background:rgba(0,0,0,0.03);}
-.line:nth-child(1){left:10%;}
-.line:nth-child(2){left:20%;}
-.line:nth-child(3){left:30%;}
-.line:nth-child(4){left:40%;}
-.line:nth-child(5){left:50%;}
-.line:nth-child(6){left:60%;}
-.line:nth-child(7){left:70%;}
-.line:nth-child(8){left:80%;}
-.line:nth-child(9){left:90%;}
-.line:nth-child(10){left:95%;}
+        <!-- TABELA DE PREÇOS MEGAS -->
+        <div id="tabelaMegas" class="tabela-container" style="display: none;">
+            <h2>💾 MEGAS DIÁRIOS (24h)</h2>
+            <table class="tabela-precos">
+                <thead>
+                    <tr>
+                        <th>Preço</th>
+                        <th>Quantidade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>💵 10 MT</td>
+                        <td>360 MB</td>
+                    </tr>
+                    <tr>
+                        <td>💵 12 MT</td>
+                        <td>410 MB</td>
+                    </tr>
+                    <tr>
+                        <td>💵 15 MT</td>
+                        <td>590 MB</td>
+                    </tr>
+                    <tr>
+                        <td>💵 20 MT</td>
+                        <td>750 MB</td>
+                    </tr>
+                    <tr>
+                        <td>💵 28 MT</td>
+                        <td>1024 MB</td>
+                    </tr>
+                    <tr>
+                        <td>💵 32 MT</td>
+                        <td>1250 MB</td>
+                    </tr>
+                    <tr>
+                        <td>💵 38 MT</td>
+                        <td>1380 MB</td>
+                    </tr>
+                    <tr>
+                        <td>💵 56 MT</td>
+                        <td>2048 MB</td>
+                    </tr>
+                </tbody>
+            </table>
 
-.line::after{
-content:"";
-position:absolute;
-width:100%;
-height:200px;
-top:-50%;
-background:linear-gradient(to bottom, rgba(255,255,255,0) 0%, #00BFFF 75%, #00FA9A 100%);
-animation:drop 6s linear infinite;
-}
+            <div class="aviso">
+                <p>⚠️ <strong>NB:</strong> Pacotes mensais/semanais não estão disponíveis nesse período! 🚫</p>
+            </div>
 
-@keyframes drop{0%{top:-50%;}100%{top:110%;}}
+            <h3>💳 FORMAS DE PAGAMENTO</h3>
+            
+            <div class="pagamento-container">
+                <div class="pagamento-rect mpesa">
+                    <h4>📱 M-PESA</h4>
+                    <p class="numero">845179817</p>
+                    <button class="btn-copiar" onclick="copiarMpesa()">📋 COPIAR</button>
+                </div>
 
-header{text-align:center;padding:60px 20px;}
-h1{font-size:42px;color:#0a58ca;}
-.subtitle{margin-top:15px;font-size:18px;max-width:700px;margin:auto;}
+                <div class="pagamento-rect emola">
+                    <h4>📱 E-MOLA</h4>
+                    <p class="numero">862671286</p>
+                    <button class="btn-copiar" onclick="copiarEmola()">📋 COPIAR</button>
+                </div>
+            </div>
 
-.btn{display:inline-block;padding:14px 28px;margin:10px;border-radius:8px;text-decoration:none;font-weight:bold;transition:0.3s;}
-.btn-green{background:#0f9d58;color:#fff;}
-.btn-blue{background:#0a58ca;color:#fff;}
-.btn:hover{opacity:0.85;}
+            <div class="vendedor-info">
+                <p>👤 <strong>ADELINA GIMIANA</strong></p>
+            </div>
 
-.section{padding:60px 20px;max-width:1200px;margin:auto;text-align:center;}
+            <!-- FORMULÁRIO DE COMPROVATIVO MEGAS -->
+            <h3>📤 ENVIAR COMPROVATIVO</h3>
+            <div class="formulario-container">
+                <form id="formComprovantivoMegas" onsubmit="enviarComprovantivoMegas(event)">
+                    <div class="form-group">
+                        <label for="comprovantivoMegas">📸 Foto do Comprovativo:</label>
+                        <input type="file" id="comprovantivoMegas" name="comprovantivoMegas" accept="image/*" required>
+                    </div>
 
-/* ===== CARROSSEL ARRASTÁVEL ===== */
-.carousel-container{
-max-width:1100px;
-margin:40px auto;
-overflow:hidden;
-border-radius:16px;
-box-shadow:0 15px 35px rgba(0,0,0,0.2);
-background:#fff;
-}
+                    <div class="form-group">
+                        <label for="whatsappMegas">📱 Número de WhatsApp:</label>
+                        <input type="tel" id="whatsappMegas" name="whatsappMegas" placeholder="+258 84 XXX XXXX" required>
+                    </div>
 
-.carousel{
-display:flex;
-overflow-x:auto;
-scroll-snap-type:x mandatory;
-scroll-behavior:smooth;
-}
+                    <button type="submit" class="btn-enviar">✅ ENVIAR</button>
+                </form>
+            </div>
 
-.carousel::-webkit-scrollbar{display:none;}
+            <div class="instrucoes">
+                <h3>📋 APÓS O PAGAMENTO:</h3>
+                <ol>
+                    <li>✅ Mande comprovativo</li>
+                    <li>✅ O número que irá receber os MB</li>
+                    <li>✅ Aguarde...</li>
+                </ol>
+            </div>
+        </div>
 
-.slide{
-flex:0 0 100%;
-scroll-snap-align:center;
-padding:20px;
-}
+        <!-- TABELA DE PREÇOS DIAMANTES -->
+        <div id="tabelaDiamantes" class="tabela-container" style="display: none;">
+            <h2>💎 DIAMANTES DIÁRIOS (24h)</h2>
 
-.slide img{
-width:100%;
-aspect-ratio:1536 / 1024;
-object-fit:cover;
-border-radius:12px;
-}
+            <!-- GALERIA DE FOTOS -->
+            <div class="galeria-container">
+                <h3>🖼️ Confira as Capturas do Jogo</h3>
+                <div class="galeria-fotos">
+                    <div class="foto-item">
+                        <img src="https://via.placeholder.com/200/00BCD4/FFFFFF?text=Diamantes+1" alt="Captura 1">
+                        <p>Diamantes em Ação</p>
+                    </div>
+                    <div class="foto-item">
+                        <img src="https://via.placeholder.com/200/00BCD4/FFFFFF?text=Diamantes+2" alt="Captura 2">
+                        <p>Estampa Diamantes</p>
+                    </div>
+                    <div class="foto-item">
+                        <img src="https://via.placeholder.com/200/00BCD4/FFFFFF?text=Diamantes+3" alt="Captura 3">
+                        <p>Coleção Premium</p>
+                    </div>
+                    <div class="foto-item">
+                        <img src="https://via.placeholder.com/200/00BCD4/FFFFFF?text=Diamantes+4" alt="Captura 4">
+                        <p>Itens Exclusivos</p>
+                    </div>
+                </div>
+            </div>
 
-.slide h3{margin-top:15px;color:#0a58ca;}
-.slide p{margin-top:10px;font-size:16px;}
+            <table class="tabela-precos-diamantes">
+                <thead>
+                    <tr>
+                        <th>Preço</th>
+                        <th>Quantidade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>💵 15 MT</td>
+                        <td>50 💎</td>
+                    </tr>
+                    <tr>
+                        <td>💵 25 MT</td>
+                        <td>100 💎</td>
+                    </tr>
+                    <tr>
+                        <td>💵 40 MT</td>
+                        <td>200 💎</td>
+                    </tr>
+                    <tr>
+                        <td>💵 50 MT</td>
+                        <td>300 💎</td>
+                    </tr>
+                    <tr>
+                        <td>💵 75 MT</td>
+                        <td>500 💎</td>
+                    </tr>
+                    <tr>
+                        <td>💵 100 MT</td>
+                        <td>800 💎</td>
+                    </tr>
+                    <tr>
+                        <td>💵 150 MT</td>
+                        <td>1500 💎</td>
+                    </tr>
+                    <tr>
+                        <td>💵 200 MT</td>
+                        <td>2500 💎</td>
+                    </tr>
+                </tbody>
+            </table>
 
-.contact{background:#ffffff;padding:50px 20px;text-align:center;}
-.contact h2{color:#0f9d58;margin-bottom:20px;}
-footer{text-align:center;padding:20px;background:#0a58ca;color:white;margin-top:40px;}
+            <div class="aviso">
+                <p>⚠️ <strong>NB:</strong> Pacotes mensais/semanais não estão disponíveis nesse período! 🚫</p>
+            </div>
 
-@media(max-width:768px){h1{font-size:32px;}}
-</style></head>
-<body><div class="lines">
-<div class="line"></div><div class="line"></div><div class="line"></div>
-<div class="line"></div><div class="line"></div><div class="line"></div>
-<div class="line"></div><div class="line"></div><div class="line"></div>
-<div class="line"></div>
-</div><header>
-<h1>Jinho Recargas</h1>
-<p class="subtitle">Plataforma profissional para compra de Megabytes Vodacom e itens Free Fire com rapidez e segurança.</p>
-<br/>
-<br/>
-<a href="mega.html" class="btn btn-green">Ir para Loja de Megas</a>
-<a href="free.html" class="btn btn-blue">Ir para Loja Free Fire</a>
-</header><section class="section">
-<h2>Atualizações e Novidades</h2>
-<p>Acompanhe abaixo as últimas novidades da loja.</p><div class="carousel-container">
-<div class="carousel" id="carousel"><div class="slide">
-<img src="tab.jpg" alt="Promoção 1">
-<h3>Promoção Especial</h3>
-<p>Pacotes promocionais disponíveis por tempo limitado.</p>
-</div><div class="slide">
-<img src="t.png" alt="Atualização 2">
-<h3>Novos Itens Free Fire</h3>
-<p>Itens recém adicionados na loja gamer.</p>
-</div><div class="slide">
-<img src="ta.png" alt="Atualização 3">
-<h3>Entrega Instantânea</h3>
-<p>Sistema otimizado para entregas mais rápidas.</p>
-</div><div class="slide">
-<img src="pe.png" alt="Atualização 4">
-<h3>Suporte Melhorado</h3>
-<p>Atendimento mais ágil via WhatsApp e Email.</p>
-</div></div>
-</div>
-</section><section class="contact">
-<h2>Suporte & Contato</h2>
-<p><strong>WhatsApp:</strong> +258 852706059</p>
-<p><strong>Email:</strong> jinhogammer@gmail.com</p>
-</section><footer>
-© 2026 Jinho Recargas - Todos os direitos reservados.
-</footer></body>
+            <h3>💳 FORMAS DE PAGAMENTO</h3>
+            
+            <div class="pagamento-container">
+                <div class="pagamento-rect mpesa">
+                    <h4>📱 M-PESA</h4>
+                    <p class="numero">845179817</p>
+                    <button class="btn-copiar" onclick="copiarMpesa()">📋 COPIAR</button>
+                </div>
+
+                <div class="pagamento-rect emola">
+                    <h4>📱 E-MOLA</h4>
+                    <p class="numero">862671286</p>
+                    <button class="btn-copiar" onclick="copiarEmola()">📋 COPIAR</button>
+                </div>
+            </div>
+
+            <div class="vendedor-info">
+                <p>👤 <strong>ADELINA GIMIANA</strong></p>
+            </div>
+
+            <!-- FORMULÁRIO DE COMPROVATIVO DIAMANTES -->
+            <h3>📤 ENVIAR COMPROVATIVO</h3>
+            <div class="formulario-container">
+                <form id="formComprovanativoDiamantes" onsubmit="enviarComprovanativoDiamantes(event)">
+                    <div class="form-group">
+                        <label for="comprovatativoDiamantes">📸 Foto do Comprovativo:</label>
+                        <input type="file" id="comprovatativoDiamantes" name="comprovatativoDiamantes" accept="image/*" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="whatsappDiamantes">📱 Número de WhatsApp:</label>
+                        <input type="tel" id="whatsappDiamantes" name="whatsappDiamantes" placeholder="+258 84 XXX XXXX" required>
+                    </div>
+
+                    <button type="submit" class="btn-enviar btn-enviar-diamantes">✅ ENVIAR</button>
+                </form>
+            </div>
+
+            <div class="instrucoes">
+                <h3>📋 APÓS O PAGAMENTO:</h3>
+                <ol>
+                    <li>✅ Mande comprovativo</li>
+                    <li>✅ O número que irá receber os Diamantes</li>
+                    <li>✅ Aguarde...</li>
+                </ol>
+            </div>
+        </div>
+
+        <button id="btnVoltar" class="btn-voltar" onclick="voltarAoMenu()" style="display: none;">
+            ← VOLTAR
+        </button>
+    </div>
+
+    <!-- SEÇÃO DE CONTATOS (RODAPÉ) -->
+    <div class="contatos-footer">
+        <div class="contato-item email">
+            <a href="mailto:jinhogammer@gmail.com">
+                <span class="icon">📧</span>
+                <span class="texto">Email</span>
+                <span class="endereco">jinhogammer@gmail.com</span>
+            </a>
+        </div>
+        <div class="contato-item whatsapp">
+            <a href="https://wa.me/258852706059" target="_blank">
+                <span class="icon">💬</span>
+                <span class="texto">WhatsApp Suporte</span>
+                <span class="endereco">+258 85 270 6059</span>
+            </a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
 </html>
